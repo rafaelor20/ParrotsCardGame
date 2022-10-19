@@ -1,0 +1,61 @@
+.cor-de-fundo{
+    background-color: #d9fca1;
+}
+
+.caixa-titulo{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fonte-titulo{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+    color: #75B79E;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.mesa-cartas{
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.carta{
+    width: 117px;
+    height: 146px;
+    margin: 15px 10px;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-carta{
+    width: 100px;
+    height: 100px;
+}
+
+@media only screen and (max-width:  614px){
+    .mesa-cartas{
+        width: 117px;
+        display: block;
+    }
+
+    .fonte-titulo{
+        font-size: 36px;
+        line-height: 42px;
+    }
+}
