@@ -7,6 +7,8 @@ const lista_gifs = ["assets/bobrossparrot.gif",
 "assets/unicornparrot.gif",
 ]
 
+let par_rodada = [];
+
 function shuffleArray(array) {
     let j, temp;
     for (let i = array.length - 1; i > 0; i--) {
@@ -45,7 +47,7 @@ function sortCartas(numCartas, lista_gifs){
 function distribuiCartas(mesa, qCartas, lista_cartas_gifs){
     for (let i = 0; i<qCartas; i++){
         mesa.innerHTML += 
-        `<div  onclick="viraCarta(this)" class="carta">
+        `<div  onclick="clicaCarta(this)" class="carta">
             <img class="img-carta" src="assets/back.png" alt="carta virada para baixo">
             <img class="img-carta escondido" src="${lista_cartas_gifs[i]}" alt="carta virada para baixo">
         </div>`;
@@ -59,16 +61,33 @@ function viraCarta(carta){
     }
 }
 
-function escolheCarta(){
-    
+function acerto(){
+    if (par_rodada[0].isEqualNode(par_rodada[1])){
+        return true;
+    } else {
+        return false;
+        
+    }
+}
+
+function clicaCarta(carta){
+    viraCarta(carta);
+    par_rodada.push(carta);
+    if (par_rodada.length == 2){
+        if (!acerto()){
+            viraCarta(par_rodada[0]);
+            viraCarta(par_rodada[1]);
+            par_rodada = [];
+        }
+    }
 }
 
 function iniciaJogo(){
     const mesa = document.querySelector(".mesa-cartas");
     const qCartas = quantCartas();
     const lista_cartas_gifs = sortCartas(qCartas, lista_gifs);
-    console.log(lista_cartas_gifs);
     distribuiCartas(mesa, qCartas, lista_cartas_gifs);
+    
     
 }
 
