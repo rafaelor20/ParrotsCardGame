@@ -49,6 +49,10 @@
     height: 100px;
 }
 
+.escondido{
+    display: none;
+}
+
 @media only screen and (max-width:  614px){
     .mesa-cartas{
         width: 117px;
