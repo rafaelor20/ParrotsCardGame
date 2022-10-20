@@ -8,6 +8,8 @@ const lista_gifs = ["assets/bobrossparrot.gif",
 ]
 
 let par_rodada = [];
+let contador = 0;
+let qCartas;
 
 function shuffleArray(array) {
     let j, temp;
@@ -78,13 +80,19 @@ function clicaCarta(carta){
             viraCarta(par_rodada[0]);
             viraCarta(par_rodada[1]);
             par_rodada = [];
+        } else {
+            contador++;
+            par_rodada = [];
         }
+    }
+    if (contador >= (qCartas/2)){
+        alert("Você ganhou!")
     }
 }
 
 function iniciaJogo(){
     const mesa = document.querySelector(".mesa-cartas");
-    const qCartas = quantCartas();
+    qCartas = quantCartas();
     const lista_cartas_gifs = sortCartas(qCartas, lista_gifs);
     distribuiCartas(mesa, qCartas, lista_cartas_gifs);
     
