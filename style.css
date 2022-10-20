@@ -28,7 +28,8 @@
 .mesa-cartas{
     width: 80%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    flex-flow: wrap;
 }
 
 .carta{

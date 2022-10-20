@@ -15,7 +15,6 @@ function quantCartas(){
 function distribuiMesa(){
     let mesa = document.querySelector(".mesa-cartas");
     const qCartas = quantCartas();
-    console.log = qCartas;
     for (let i = 0; i<qCartas; i++){
         mesa.innerHTML += 
         `<div class="carta">
