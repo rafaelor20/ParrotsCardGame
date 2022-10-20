@@ -7,8 +7,8 @@ const lista_gifs = ["assets/bobrossparrot.gif",
 "assets/unicornparrot.gif",
 ]
 
-let par_rodada = [];
-let contador = 0;
+let par_rodada;
+let contadorParaVitoria;
 let qCartas;
 
 function shuffleArray(array) {
@@ -81,24 +81,41 @@ function clicaCarta(carta){
             viraCarta(par_rodada[1]);
             par_rodada = [];
         } else {
-            contador++;
+            contadorParaVitoria++;
             par_rodada = [];
         }
     }
-    if (contador >= (qCartas/2)){
+    if (contadorParaVitoria >= (qCartas/2)){
         alert("Você ganhou!")
+        reiniciar();
     }
 }
 
 function iniciaJogo(){
+    contadorParaVitoria = 0;
+    par_rodada = [];
     const mesa = document.querySelector(".mesa-cartas");
+    mesa.innerHTML = "";
     qCartas = quantCartas();
     const lista_cartas_gifs = sortCartas(qCartas, lista_gifs);
     distribuiCartas(mesa, qCartas, lista_cartas_gifs);
-    
-    
 }
 
+function reiniciar(){
+    let resposta = "";
+    let condicao = true;
+    while (condicao){
+        resposta = prompt("Quer reiniciar? sim ou não?");
+        if (resposta == "sim"){
+            condicao = false;
+            iniciaJogo();
+        } else if (resposta == "não") {
+            condicao = false;
+        } else {
+            alert("sim ou não minúsculo!");
+        }
+    }
+}
 
 iniciaJogo();
 
