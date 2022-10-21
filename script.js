@@ -8,9 +8,9 @@ const lista_gifs = ["assets/bobrossparrot.gif",
 ]
 
 let par_rodada;
-let contadorParaVitoria;
+let contadorParaVitoria;//começa com valor zero em cada partida e define fim da partida quando for igual a qCartas/2;
 let qCartas;
-let jogadas;
+let jogadas;//conta a quant de jogadas
 
 function shuffleArray(array) {
     let j, temp;
@@ -37,6 +37,7 @@ function quantCartas(){
 }
 
 function sortCartas(numCartas, lista_gifs){
+    shuffleArray(lista_gifs);
     numCartas = numCartas/2;
     let  lista_cartas_gifs = [];
     for (let i = 0; i < numCartas; i++){
