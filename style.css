@@ -47,10 +47,13 @@
 .img-carta{
     width: 100px;
     height: 100px;
+    /*transition: all 1s;
+    transform-style: preserve-3d;*/
 }
 
 .escondido{
     display: none;
+    /*transform: translateY(180deg);*/
 }
 
 @media only screen and (max-width:  614px){

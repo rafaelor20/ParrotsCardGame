@@ -77,8 +77,8 @@ function clicaCarta(carta){
     par_rodada.push(carta);
     if (par_rodada.length == 2){
         if (!acerto()){
-            viraCarta(par_rodada[0]);
-            viraCarta(par_rodada[1]);
+            setTimeout(viraCarta, 1000, par_rodada[0]);
+            setTimeout(viraCarta, 1000, par_rodada[1]);
             par_rodada = [];
         } else {
             contadorParaVitoria++;
