@@ -10,6 +10,7 @@ const lista_gifs = ["assets/bobrossparrot.gif",
 let par_rodada;
 let contadorParaVitoria;
 let qCartas;
+let jogadas;
 
 function shuffleArray(array) {
     let j, temp;
@@ -50,8 +51,8 @@ function distribuiCartas(mesa, qCartas, lista_cartas_gifs){
     for (let i = 0; i<qCartas; i++){
         mesa.innerHTML += 
         `<div  onclick="clicaCarta(this)" class="carta">
-            <img class="img-carta" src="assets/back.png" alt="carta virada para baixo">
-            <img class="img-carta escondido" src="${lista_cartas_gifs[i]}" alt="carta virada para baixo">
+            <img class="img-carta" src="assets/back.png" alt="costas da carta">
+            <img class="img-carta escondido" src="${lista_cartas_gifs[i]}" alt="frente da carta">
         </div>`;
     }
 }
@@ -74,6 +75,7 @@ function acerto(){
 
 function clicaCarta(carta){
     viraCarta(carta);
+    jogadas++;
     par_rodada.push(carta);
     if (par_rodada.length == 2){
         if (!acerto()){
@@ -86,13 +88,16 @@ function clicaCarta(carta){
         }
     }
     if (contadorParaVitoria >= (qCartas/2)){
-        alert("Você ganhou!")
-        reiniciar();
+        /*alert(`Você ganhou em ${jogadas} jogadas!`);*/
+        setTimeout(alert , 1000, `Você ganhou em ${jogadas} jogadas!`);
+        setTimeout(reiniciar, 1000);
+        /*reiniciar();*/
     }
 }
 
 function iniciaJogo(){
     contadorParaVitoria = 0;
+    jogadas = 0;
     par_rodada = [];
     const mesa = document.querySelector(".mesa-cartas");
     mesa.innerHTML = "";
