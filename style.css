@@ -36,13 +36,36 @@
     width: 117px;
     height: 146px;
     margin: 15px 10px;
+    display: flex;
+    position: relative;
+}
+
+.lado-da-carta{
+    height: 100%;
+    width: 100%;
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
 }
+
+.frente {
+    transform: rotateY(180deg);
+  }
+
+  .carta:active .frente {
+    transform: rotateY(0deg);
+  }
+
+  .carta:active .costa {
+    transform: rotateY(-180deg);
+  }
 
 .img-carta{
     width: 100px;
@@ -50,19 +73,7 @@
 }
 
 .escondido{
-    display: none;
-}
-
-.back-face{
-    transform: translateY(180deg);
-}
-
-.card:hover .back-face {
-    transform: rotateY(0deg);
-}
-
-.card:hover .front-face {
-  transform: rotateY(-180deg);
+    display: flex;
 }
 
 @media only screen and (max-width:  614px){

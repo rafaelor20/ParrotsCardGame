@@ -52,25 +52,48 @@ function distribuiCartas(mesa, qCartas, lista_cartas_gifs){
     for (let i = 0; i<qCartas; i++){
         mesa.innerHTML += 
         `<div  onclick="clicaCarta(this)" class="carta">
-            <img class="img-carta" src="assets/back.png" alt="costas da carta">
-            <img class="img-carta escondido" src="${lista_cartas_gifs[i]}" alt="frente da carta">
+            <div class="lado-da-carta costa">
+                <img class="img-carta" src="assets/back.png" alt="costas da carta ${i}">
+            </div>
+            <div class="lado-da-carta frente">
+                <img class="img-carta" src="${lista_cartas_gifs[i]}" alt="frente da carta">
+            </div>
         </div>`;
     }
 }
 
 function viraCarta(carta){
-    let imagens = carta.querySelectorAll(".img-carta");
-    for (let i = 0; i < imagens.length; i++){
-        imagens[i].classList.toggle("escondido");
+    let lados = carta.querySelectorAll(".lado-da-carta");
+    for (let i = 0; i < lados.length; i++){
+        lados[i].classList.toggle("frente");
+        lados[i].classList.toggle("costa");
     }
 }
 
+function viradaPraCima(carta){
+    const frente = carta.querySelector(".costa").innerHTML;
+    carta.innerHTML = 
+    `    
+    <div class="lado-da-carta costa">
+        ${frente}
+    </div>
+    `
+}
+
 function acerto(){
-    if (par_rodada[0].isEqualNode(par_rodada[1])){
-        return true;
-    } else {
-        return false;
-        
+    const costa0 = par_rodada[0].querySelector(".frente");
+    const costa1 = par_rodada[1].querySelector(".frente");
+    const frente0 = par_rodada[0].querySelector(".costa");
+    const frente1 = par_rodada[1].querySelector(".costa");
+    if (costa0.isEqualNode(costa1)){
+            return false;
+        }
+    else {
+        if (frente0.isEqualNode(frente1)){
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -84,13 +107,15 @@ function clicaCarta(carta){
             setTimeout(viraCarta, 1000, par_rodada[1]);
             par_rodada = [];
         } else {
+            viradaPraCima(par_rodada[0]);
+            viradaPraCima(par_rodada[1]);
             contadorParaVitoria++;
             par_rodada = [];
         }
     }
     if (contadorParaVitoria >= (qCartas/2)){
         /*alert(`Você ganhou em ${jogadas} jogadas!`);*/
-        setTimeout(alert , 1000, `Você ganhou em ${jogadas} jogadas!`);
+        setTimeout(alert , 500, `Você ganhou em ${jogadas} jogadas!`);
         setTimeout(reiniciar, 1000);
         /*reiniciar();*/
     }
