@@ -80,6 +80,15 @@ function viradaPraCima(carta){
     `
 }
 
+function estaViradaPraCima(carta){
+    const sim = carta.querySelector(".frente");
+    if (sim != null){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function acerto(){
     const costa0 = par_rodada[0].querySelector(".frente");
     const costa1 = par_rodada[1].querySelector(".frente");
@@ -98,26 +107,28 @@ function acerto(){
 }
 
 function clicaCarta(carta){
-    viraCarta(carta);
-    jogadas++;
-    par_rodada.push(carta);
-    if (par_rodada.length == 2){
-        if (!acerto()){
-            setTimeout(viraCarta, 1000, par_rodada[0]);
-            setTimeout(viraCarta, 1000, par_rodada[1]);
-            par_rodada = [];
-        } else {
-            viradaPraCima(par_rodada[0]);
-            viradaPraCima(par_rodada[1]);
-            contadorParaVitoria++;
-            par_rodada = [];
+    if (estaViradaPraCima(carta)){
+        viraCarta(carta);
+        jogadas++;
+        par_rodada.push(carta);
+        if (par_rodada.length == 2){
+            if (!acerto()){
+                setTimeout(viraCarta, 1000, par_rodada[0]);
+                setTimeout(viraCarta, 1000, par_rodada[1]);
+                par_rodada = [];
+            } else {
+                viradaPraCima(par_rodada[0]);
+                viradaPraCima(par_rodada[1]);
+                contadorParaVitoria++;
+                par_rodada = [];
+            }
         }
-    }
-    if (contadorParaVitoria >= (qCartas/2)){
-        /*alert(`Você ganhou em ${jogadas} jogadas!`);*/
-        setTimeout(alert , 500, `Você ganhou em ${jogadas} jogadas!`);
-        setTimeout(reiniciar, 1000);
-        /*reiniciar();*/
+        if (contadorParaVitoria >= (qCartas/2)){
+            /*alert(`Você ganhou em ${jogadas} jogadas!`);*/
+            setTimeout(alert , 500, `Você ganhou em ${jogadas} jogadas!`);
+            setTimeout(reiniciar, 1000);
+            /*reiniciar();*/
+        }
     }
 }
 
