@@ -26,7 +26,7 @@
 }
 
 .mesa-cartas{
-    width: 80%;
+    max-width: 80%;
     display: flex;
     justify-content: center;
     flex-flow: wrap;
@@ -35,7 +35,7 @@
 .carta{
     width: 117px;
     height: 146px;
-    margin: 15px 10px;
+    margin: 20px 20px;
     display: flex;
     position: relative;
 }
